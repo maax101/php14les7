@@ -4,7 +4,7 @@ if (isset($_GET['test_name'])) {
 	$temp = file_get_contents($path_file);
 	file_put_contents('temp.php', json_decode($temp));
 	$test = file_get_contents('temp.php');
-} else { header('<h1>HTTP/1.0 404 Not Found</h1>',404); }
+} else { header('Location: 404.html',404); }
 ?>
 <!DOCTYPE html>
 <html>

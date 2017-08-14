@@ -23,16 +23,7 @@ exit();} else {
 $user = htmlspecialchars((string) $_GET['user_name']);
 file_put_contents('allresult.php','<br>'. date('d.m.y').'. '.$user.': правильно - '.$ot.', не правильно - '.$not.'<br>', FILE_APPEND);
 
-$sert = @imagecreatetruecolor(640, 320) or die ('Невозможно инициализировать GD поток');	
-$text_col = imagecolorallocate($sert, 15, 90, 20);
-$fill = imagecolorallocate($sert, 220, 220, 220);
-imagefill($sert, 10, 10, $fill);
-imagettftext($sert, 22, 0, 200, 50, $text_col, 'arial.ttf', 'Ваш результат, '.$user.':');
-imagettftext($sert, 15,0, 50, 100,$text_col,'arial.ttf', 'правильно: '.$ot);
-imagettftext($sert, 15,0, 50, 150,$text_col,'arial.ttf', 'неправильно: '.$not);
-header('Content-Type: image/png; Location: list.php');
-imagepng($sert);
-imagedestroy($sert);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,6 +35,15 @@ imagedestroy($sert);
 <p><h2> Ваш результат, <?=$user?>: </h2></p>
 <p>правильно: <?=$ot?></p>
 <p>не правильно: <?=$not?></p>
+</div>
+<div>
+	<form action="cert.php" method="get">
+		<input type="hidden" name="user" value="<?=$user?>">
+		<input type="hidden" name="ot" value="<?=$ot?>">
+		<input type="hidden" name="not" value="<?=$not?>">
+		<input type="submit" value="получить сертификат" >
+
+	</form>
 </div>
 <a href="admin.php">Администрация</a>
 </body>
