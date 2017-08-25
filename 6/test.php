@@ -3,8 +3,7 @@ if (isset($_GET['test_name']) && file_exists('tests/' . $_GET['test_name'])) {
     $path_file = 'tests/' . $_GET['test_name'];
     $temp      = file_get_contents($path_file);
     $test      = json_decode($temp, true);
-    var_dump($test);
-} else {
+    } else {
     http_response_code(404);
     echo '<h1>404 Not Found</h1><a href="list.php">На страницу выбора тестов</a>';
     exit(1);
